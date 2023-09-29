@@ -6,39 +6,39 @@ const selectEngine = document.getElementById('select_tools_engine');
 const selectTranslateTo = document.getElementById('select_tools_language_translation');
 
 const updateUrlParams = async () => {
+    const textValue = textareaText.value.trim();
+    const engineValue = selectEngine.value;
+    const toValue = selectTranslateTo.value;
+
+    // Update the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('materiaTools', 'translate');
+    urlParams.set('text', textValue);
+    urlParams.set('engine', engineValue);
+    urlParams.set('to', toValue);
 
-    if (urlParams.has('materiaTools') && urlParams.get('materiaTools') === 'translate') {
-        const textParam = urlParams.get('text');
-        const engineParam = urlParams.get('engine');
-        const toParam = urlParams.get('to');
+    // Update the URL without refreshing the page
+    window.history.replaceState({}, '', `?${urlParams.toString()}`);
 
-        if (textParam && engineParam && toParam) {
-            textareaText.value = textParam;
-            selectEngine.value = engineParam;
-            selectTranslateTo.value = toParam;
+    try {
+        const baseUrl = 'https://api-translate.azharimm.dev/translate';
+        const url = new URL(baseUrl);
 
-            try {
-                const baseUrl = 'https://api-translate.azharimm.dev/translate';
-                const url = new URL(baseUrl);
+        url.searchParams.set('engine', engineValue);
+        url.searchParams.set('to', toValue);
+        url.searchParams.set('text', textValue);
 
-                url.searchParams.set('engine', engineParam);
-                url.searchParams.set('to', toParam);
-                url.searchParams.set('text', textParam);
+        const response = await fetch(url.href);
 
-                const response = await fetch(url.href);
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-
-                textareaTranslation.value = data.data.result;
-            } catch (error) {
-                snackbar('Fetch Error: ' + error, 3000);
-            }
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+
+        const data = await response.json();
+
+        textareaTranslation.value = data.data.result;
+    } catch (error) {
+        snackbar('Fetch Error: ' + error, 3000);
     }
 };
 
@@ -47,5 +47,6 @@ if (textareaText && textareaTranslation && selectEngine && selectTranslateTo) {
     selectTranslateTo.addEventListener('change', updateUrlParams);
     textareaText.addEventListener('input', updateUrlParams);
 
+    // Update URL parameters on initial page load
     updateUrlParams();
 }
