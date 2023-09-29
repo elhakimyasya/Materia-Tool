@@ -1,7 +1,7 @@
 import { snackbar } from './module/snackbar';
 
-const loaders = document.querySelector('tool_loader');
-const wrapper = document.querySelector('tool_wrapper');
+const loaders = document.querySelector('.tool_loader');
+const wrapper = document.querySelector('.tool_wrapper');
 const textareaText = document.getElementById('textarea_tools_language_text');
 const textareaTranslation = document.getElementById('textarea_tools_language_translation');
 const selectEngine = document.getElementById('select_tools_engine');
