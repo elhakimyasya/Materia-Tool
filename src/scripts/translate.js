@@ -1,11 +1,13 @@
 import { snackbar } from './module/snackbar';
 
+const loaders = document.querySelector('tool_loader');
+const wrapper = document.querySelector('tool_wrapper');
 const textareaText = document.getElementById('textarea_tools_language_text');
 const textareaTranslation = document.getElementById('textarea_tools_language_translation');
 const selectEngine = document.getElementById('select_tools_engine');
 const selectTranslateTo = document.getElementById('select_tools_language_translation');
 
-if (textareaText && textareaTranslation && selectEngine && selectTranslateTo) {
+if (loaders && textareaText && textareaTranslation && selectEngine && selectTranslateTo) {
     const updateUrlParams = async () => {
         // Check if textareaText is empty or blank
         if (textareaText.value.trim() === '') {
@@ -36,6 +38,9 @@ if (textareaText && textareaTranslation && selectEngine && selectTranslateTo) {
             snackbar('Fetch Error: ' + error, 3000);
         }
     };
+
+    loaders.remove();
+    wrapper.classList.remove('hidden');
 
     selectEngine.addEventListener('change', updateUrlParams);
     selectTranslateTo.addEventListener('change', updateUrlParams);
