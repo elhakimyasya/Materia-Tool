@@ -6,7 +6,8 @@ const webpackObfuscator = require('webpack-obfuscator');
 module.exports = {
     mode: 'production',
     entry: {
-        "translate": './src/scripts/translate.js'
+        "translate": './src/scripts/translate.js',
+        "indonesia-holidays": './src/scripts/indonesia-holidays.js',
     },
     output: {
         clean: true,

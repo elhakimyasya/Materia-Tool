@@ -1,0 +1,23 @@
+<div class="tool_loader flex min-h-[50vh] items-center justify-center">
+    <div class="loader mx-auto h-[42px] w-[42px]">
+        <svg class="animate-[animRotate_2s_linear_infinite]" viewBox="25 25 50 50" width="42" height="42" aria-hidden="true"><circle class="animate-[animDash_1.2s_ease-in-out_infinite,animColor_3s_ease-in-out_infinite] [stroke-dasharray:1,200] [stroke-dashoffset:0] [stroke-linecap:round]" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle></svg>
+    </div>
+</div>
+<div class="tool_wrapper hidden w-full">
+    <div class="elcreative_input mb-2">
+        <input id="input_tool_date" name="input_tool_date" placeholder=" " type="date" />
+        <label for="input_tool_date">Tanggal Bulan & Tahun</label>
+    </div>
+    <div class="tool_result mt-4 w-full">
+        <div class="mb-3 dark:bg-colorDarkBackgroundAlt flex w-full flex-col items-start justify-center rounded-lg bg-colorBackground p-3 shadow-2dp">
+            <div class="line-clamp-1 text-lg font-bold">elcreativeacademy.com</div>
+            <div class="dark:text-colorDarkMeta line-clamp-1 text-colorMeta"><strong>IP:</strong> 192.168.1.1</div>
+            <div class="dark:text-colorDarkMeta line-clamp-1 text-colorMeta"><strong>Status:</strong> Blocked</div>
+        </div>
+    </div>
+</div>
+<script>
+    Defer(function () {
+        loadScript('https://cdn.jsdelivr.net/gh/elhakimyasya/Materia-Tool@99e63644ae61999350d104bb0dd70a8c9568ccf0/dist/indonesia-holidays.min.js');
+    }, 3000);
+</script>
